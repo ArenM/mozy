@@ -9,6 +9,28 @@
   </head>
 
   <body>
-    <%= yield %>
+      <nav class="navbar navbar-toggleable-md navbar-inverse bg-inverse sticky-top" style="margin-bottom: 20px">
+	  <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+	      <span class="navbar-toggler-icon">nav</span>
+	  </button>
+	  <%= link_to "Mosey", root_path, class: "navbar-brand" %>
+
+	  <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+	      <ul class="navbar-nav ml-auto justify-content-end">
+		  <li class="nav-item <%= 'active' if current_page?(find_map_path) %>">
+		      <%= link_to "Map", find_map_path, class: "nav-link" %>
+		  </li>
+		  <li class="nav-item">
+		      <%= link_to "Logout", destroy_user_session_path, method: :delete, class: "nav-link" %>
+		  </li>
+	      </ul>
+	  </div>
+      </nav>
+      <div class="container">
+	  <%= render partial: "shared/flash_message", flash: flash %>
+	  <%= yield %>
+      </div>
+      <div style="height: 3000px">
+      </div>
   </body>
 </html>

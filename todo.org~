@@ -1,0 +1,34 @@
+* IN_PROGRESS Login
+** TODO Styles
+** TODO Manual user confermation
+* TODO User Profile
+** TODO Create User Profile
+** TODO Edit User Profile
+** TODO Styles
+* TODO Homepage to view other users
+** TODO Link to user profile
+* TODO User Trips
+** TODO Styles
+* TODO User Rides
+** TODO Styles
+* TODO View other user profile
+** TODO Trips
+** TODO Rides
+* TODO Map
+** TODO Markers
+*** TODO Popups
+**** TODO Name
+**** TODO Ride days
+**** IDIEA Trip days
+
+Parts
+| Name     | Function                                                                                                            |
+|----------+---------------------------------------------------------------------------------------------------------------------|
+| Users    | Home Page: Display avalibe rides                                                                                    |
+| Trips    | A users trips to/from a place probably                                                                              |
+| Rides    | A users needed rides to/from a place probably the school                                                             |
+| Manage   | Manage Page: Acts as a single source for all user info                                                              |
+| Map      | Map Page: A map witth all the users and the school on the map                                                       |
+| Profiles | Manage Profile: profile management, holds profile info, has_many Drives, has_namy <Needed Rides>, view profile page |
+| User     | The User management section, from devise, has_one Profile                                                           |
+

@@ -22,13 +22,20 @@
 **** IDIEA Trip days
 
 Parts
-| Name     | Function                                                                                                            |
-|----------+---------------------------------------------------------------------------------------------------------------------|
-| Users    | Home Page: Display avalibe rides                                                                                    |
-| Trips    | A users trips to/from a place probably                                                                              |
-| Rides    | A users needed rides to/from a place probably the school                                                             |
-| Manage   | Manage Page: Acts as a single source for all user info                                                              |
-| Map      | Map Page: A map witth all the users and the school on the map                                                       |
-| Profiles | Manage Profile: profile management, holds profile info, has_many Drives, has_namy <Needed Rides>, view profile page |
-| User     | The User management section, from devise, has_one Profile                                                           |
+| Name       | Function                                                                                                            | t |
+|------------+---------------------------------------------------------------------------------------------------------------------+---|
+| Find#index | Home Page: Display avalibe rides                                                                                    | c |
+| Find#map   | Map Page: A map witth all the users and the school on the map                                                       | c |
+| Trips      | A users trips to/from a place probably                                                                              | s |
+| Rides      | A users needed rides to/from a place probably the school                                                            | s |
+| Manage     | Manage Page: Acts as a single source for all user info                                                              | c |
+| Profiles   | Manage Profile: profile management, holds profile info, has_many Drives, has_namy <Needed Rides>, view profile page | s |
+| User       | The User management section, from devise, has_one Profile                                                           | o |
 
+
+columnn t is type
+| key | value      |
+|-----+------------|
+| c   | controller |
+| s   | scaffold   |
+| o   | other      |
