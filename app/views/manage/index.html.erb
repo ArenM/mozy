@@ -1,2 +1,24 @@
-<h1>Manage#index</h1>
-<p>Find me in app/views/manage/index.html.erb</p>
+<h3><%= link_to "Login Precerences", edit_user_registration_path %></h3>
+<p>your email is: <%= current_user.email %></p>
+<h3><%= link_to "Manage Profile", edit_profiles_path %></h3>
+<p>Your public name is: <%= current_user.profile.first_name %> <%= current_user.profile.last_name %></p>
+<p>Your address is:
+    <%= current_user.profile.street_address %>
+    <%= current_user.profile.town %>
+    <%= current_user.profile.state %>
+    <%= current_user.profile.zipcode %><br>
+    <%= link_to "More", profile_path(current_user.profile.id) %>
+</p>
+<% require 'date' %>
+<h3><%= link_to "Trips" %></h3>
+<p>Trips that are being taken</p>
+<p>Trips that are being taken</p>
+<p>Trips that are being taken</p>
+<h3><%= link_to "Rides" %></h3>
+<p>Rides that are being taken</p>
+<p>Rides that are being taken</p>
+<p>Rides that are being taken</p>
+<h3><%= link_to "Needed Rides" %></h3>
+<p>Rides That would be helpful*</p>
+<p>Rides That would be helpful*</p>
+<p>Rides That would be helpful*</p>
