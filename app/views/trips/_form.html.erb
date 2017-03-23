@@ -1,0 +1,67 @@
+<%= form_for(trip) do |f| %>
+  <% if trip.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(trip.errors.count, "error") %> prohibited this trip from being saved:</h2>
+
+      <ul>
+      <% trip.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :user_id %>
+    <%= f.text_field :user_id %>
+  </div>
+
+  <div class="field">
+    <%= f.label :meeting_time %>
+    <%= f.time_select :meeting_time %>
+  </div>
+
+  <div class="field">
+    <%= f.label :start_date %>
+    <%= f.date_select :start_date %>
+  </div>
+
+  <div class="field">
+    <%= f.label :end_date %>
+    <%= f.date_select :end_date %>
+  </div>
+
+  <div class="field">
+    <%= f.label :from %>
+    <%= f.text_field :from %>
+  </div>
+
+  <div class="field">
+    <%= f.label :to %>
+    <%= f.text_field :to %>
+  </div>
+
+  <div class="field">
+    <%= f.label :meeting_place %>
+    <%= f.text_field :meeting_place %>
+  </div>
+
+  <div class="field">
+    <%= f.label :driver_first_name %>
+    <%= f.text_field :driver_first_name %>
+  </div>
+
+  <div class="field">
+    <%= f.label :driver_lase_name %>
+    <%= f.text_field :driver_lase_name %>
+  </div>
+
+  <div class="field">
+    <%= f.label :notes %>
+    <%= f.text_area :notes %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

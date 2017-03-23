@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :trips
   get 'manage/index'
 
   resources :profiles, except: [:new, :create, :destroy, :edit, :update] do

@@ -22,15 +22,16 @@
 **** TODO Trip days
 * Tables
 Parts
-| Name       | Function                                                                                                            | t |
-|------------+---------------------------------------------------------------------------------------------------------------------+---|
-| Find#index | Home Page: Display avalibe rides                                                                                    | c |
-| Find#map   | Map Page: A map witth all the users and the school on the map                                                       | c |
-| Trips      | A users trips to/from a place probably                                                                              | s |
-| Rides      | A users needed rides to/from a place probably the school                                                            | s |
-| Manage     | Manage Page: Acts as a single source for all user info                                                              | c |
-| Profiles   | Manage Profile: profile management, holds profile info, has_many Drives, has_namy <Needed Rides>, view profile page | s |
-| User       | The User management section, from devise, has_one Profile                                                           | o |
+| Name         | Function                                                                                                            | t |
+|--------------+---------------------------------------------------------------------------------------------------------------------+---|
+| Find#index   | Home Page: Display avalibe rides                                                                                    | c |
+| Find#map     | Map Page: A map witth all the users and the school on the map                                                       | c |
+| Drives       | A users trips to/from a place probably                                                                              | s |
+| Rides        | Rides A user is getting to/from a place probably the school belongs_to drive                                        | s |
+| Needed_Rides | Belongs_to profile the rides that A user needs                                                                      | s |
+| Manage       | Manage Page: Acts as a single source for all user info                                                              | c |
+| Profiles     | Manage Profile: profile management, holds profile info, has_many Drives, has_namy <Needed Rides>, view profile page | s |
+| User         | The User management section, from devise, has_one Profile                                                           | o |
 
 columnn t is type
 | key | value      |
@@ -50,3 +51,26 @@ Profiles
 | zipcode        | int       | yes     |
 | latitude       | float     | no      |
 | longitude      | float     | no      |
+
+Drives
+| key               | type       | editable |
+|-------------------+------------+----------|
+| user              | references | no       |
+| meeting_time      | time       | yes      |
+| start_date        | date       | yes      |
+| end_date          | date       | yes      |
+| from              | string     | yes      |
+| to                | string     | yes      |
+| meeting_place     | string     | yes      |
+| driver_first_name | string     | yes      |
+| driver_last_name  | string     | yes      |
+| notes             | text       | yes      |
+
+Rides
+|key|type|editable|
+|-
+
+Needed_Rides
+|key|type|editable|
+|-
+
