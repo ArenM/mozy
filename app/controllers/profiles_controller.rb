@@ -1,5 +1,5 @@
 class ProfilesController < ApplicationController
-  before_action :set_profile, only: [:show, :edit, :update, :destroy]
+  before_action :set_profile, only: [:show, :edit, :update]
 
   # GET /profiles
   # GET /profiles.json
@@ -10,6 +10,7 @@ class ProfilesController < ApplicationController
   # GET /profiles/1
   # GET /profiles/1.json
   def show
+    set_url_profile
   end
 
   # GET /profiles/new
@@ -42,7 +43,7 @@ class ProfilesController < ApplicationController
   def update
     respond_to do |format|
       if @profile.update(profile_params)
-        format.html { redirect_to @profile, notice: 'Profile was successfully updated.' }
+        format.html { redirect_to profiles_path, notice: 'Profile was successfully updated.' }
         format.json { render :show, status: :ok, location: @profile }
       else
         format.html { render :edit }
@@ -67,8 +68,12 @@ class ProfilesController < ApplicationController
       @profile = current_user.profile
     end
 
+    def set_url_profile
+      @profile = Profile.find(params[:id])
+    end
+
     # Never trust parameters from the scary internet, only allow the white list through.
     def profile_params
-      params.require(:profile).permit(:user_id, :first_name, :last_name, :street_address, :town, :state, :zipcode, :latitude, :longitude)
+      params.require(:profile).permit(:first_name, :last_name, :street_address, :town, :state, :zipcode)
     end
 end

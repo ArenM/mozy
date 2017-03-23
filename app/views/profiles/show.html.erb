@@ -2,7 +2,7 @@
 
 <p>
   <strong>User:</strong>
-  <%= @profile.user %>
+  <%= @profile.user.id %>
 </p>
 
 <p>
@@ -45,5 +45,5 @@
   <%= @profile.longitude %>
 </p>
 
-<%= link_to 'Edit', edit_profile_path(@profile) %> |
-<%= link_to 'Back', profiles_path %>
+<%= link_to 'Edit', edit_profiles_path %> |
+<%= link_to 'Back', :back %>

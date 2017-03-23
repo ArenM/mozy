@@ -1,8 +1,11 @@
 Rails.application.routes.draw do
+  get 'manage/index'
+
   resources :profiles, except: [:new, :create, :destroy, :edit, :update] do
     collection do
       get 'edit', :action => 'edit'
-      match '', :action => 'update', via: [:patch, :put]
+      match '', :action => 'update', via: :patch
+      match '', :action => 'update', via: :put
     end
   end
   root to: 'find#index'
