@@ -16,7 +16,7 @@ class ApplicationController < ActionController::Base
         @profile = Profile.where(user_id: current_user.id).first
         if @profile.created_at == @profile.updated_at
           respond_to do |format|
-            format.html { redirect_to edit_profile_path( current_user.id ), alert: 'Pleese Create a profile!' }
+            format.html { redirect_to edit_profiles_path, alert: 'Pleese Create a profile!' }
           end
         end
       end

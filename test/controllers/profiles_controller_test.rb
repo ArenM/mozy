@@ -17,7 +17,7 @@ class ProfilesControllerTest < ActionDispatch::IntegrationTest
 
   test "should create profile" do
     assert_difference('Profile.count') do
-      post profiles_url, params: { profile: { first_name: @profile.first_name, last_name: @profile.last_name, latitude: @profile.latitude, longitude: @profile.longitude, street_address: @profile.street_address, town: @profile.town, user_id: @profile.user_id, zipcode: @profile.zipcode } }
+      post profiles_url, params: { profile: { first_name: @profile.first_name, last_name: @profile.last_name, latitude: @profile.latitude, longitude: @profile.longitude, state: @profile.state, street_address: @profile.street_address, town: @profile.town, user_id: @profile.user_id, zipcode: @profile.zipcode } }
     end
 
     assert_redirected_to profile_url(Profile.last)
@@ -34,7 +34,7 @@ class ProfilesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update profile" do
-    patch profile_url(@profile), params: { profile: { first_name: @profile.first_name, last_name: @profile.last_name, latitude: @profile.latitude, longitude: @profile.longitude, street_address: @profile.street_address, town: @profile.town, user_id: @profile.user_id, zipcode: @profile.zipcode } }
+    patch profile_url(@profile), params: { profile: { first_name: @profile.first_name, last_name: @profile.last_name, latitude: @profile.latitude, longitude: @profile.longitude, state: @profile.state, street_address: @profile.street_address, town: @profile.town, user_id: @profile.user_id, zipcode: @profile.zipcode } }
     assert_redirected_to profile_url(@profile)
   end
 

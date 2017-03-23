@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170323022900) do
+ActiveRecord::Schema.define(version: 20170323140448) do
 
   create_table "profiles", force: :cascade do |t|
     t.integer  "user_id"
@@ -18,6 +18,7 @@ ActiveRecord::Schema.define(version: 20170323022900) do
     t.string   "last_name"
     t.string   "street_address"
     t.string   "town"
+    t.string   "state"
     t.integer  "zipcode"
     t.float    "latitude"
     t.float    "longitude"

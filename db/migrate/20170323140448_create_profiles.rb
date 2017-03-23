@@ -6,6 +6,7 @@ class CreateProfiles < ActiveRecord::Migration[5.0]
       t.string :last_name
       t.string :street_address
       t.string :town
+      t.string :state
       t.integer :zipcode
       t.float :latitude
       t.float :longitude

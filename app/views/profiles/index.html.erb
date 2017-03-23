@@ -10,6 +10,7 @@
       <th>Last name</th>
       <th>Street address</th>
       <th>Town</th>
+      <th>State</th>
       <th>Zipcode</th>
       <th>Latitude</th>
       <th>Longitude</th>
@@ -20,11 +21,12 @@
   <tbody>
     <% @profiles.each do |profile| %>
       <tr>
-        <td><%= profile.user.id %></td>
+        <td><%= profile.user %></td>
         <td><%= profile.first_name %></td>
         <td><%= profile.last_name %></td>
         <td><%= profile.street_address %></td>
         <td><%= profile.town %></td>
+        <td><%= profile.state %></td>
         <td><%= profile.zipcode %></td>
         <td><%= profile.latitude %></td>
         <td><%= profile.longitude %></td>
