@@ -1,2 +1,32 @@
-<h1>Find#index</h1>
-<p>Find me in app/views/find/index.html.erb</p>
+<h2>People near you</h2>
+
+<table class="table table-striped table-hover">
+    <thead class="thead-inverse">
+	<tr>
+	    <th>First name</th>
+	    <th>Last name</th>
+	    <th>Street address</th>
+	    <th>Town</th>
+	    <th>State</th>
+	    <th>Days Driveing</th>
+	    <th>Days Rideing</th>
+	    <th>Days Needing a Ride</th>
+	</tr>
+    </thead>
+
+    <tbody>
+	<% @profiles.each do |profile| %>
+	    <tr href="<%=  profile_path(profile.id) %>">
+		<td><%= profile.first_name %></td>
+		<td><%= profile.last_name %></td>
+		<td><%= profile.street_address %></td>
+		<td><%= profile.town %></td>
+		<td><%= profile.state %></td>
+		<td>mon, tues</td>
+		<td>wed, fri</td>
+		<td>thurs</td>
+	    </tr>
+	<% end %>
+    </tbody>
+</table>
+

@@ -1,12 +1,12 @@
 * QA Login
 ** QA Styles
 ** TODO Manual user confermation
-* TODO User Profile
-** TODO Create User Profile
-** TODO Edit User Profile
-** TODO Styles
-* TODO Homepage to view other users
-** TODO Link to user profile
+* QA User Profile
+** QA Create User Profile
+** QA Edit User Profile
+** QA Styles
+* QA Homepage to view other users
+** QA Link to user profile
 * TODO User Trips
 ** TODO Styles
 * TODO User Rides
@@ -19,7 +19,7 @@
 *** QA Popups
 **** QA Name
 **** TODO Ride days
-**** IDIEA Trip days
+**** TODO Trip days
 * Tables
 Parts
 | Name       | Function                                                                                                            | t |
