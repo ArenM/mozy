@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :profiles
   root to: 'find#index'
   get 'find/index'
   get 'find/map'

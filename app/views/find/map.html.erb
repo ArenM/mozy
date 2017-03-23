@@ -32,12 +32,12 @@
  }
 
  function populate_map() {
-     jQuery.getJSON("/rides/index.json", function (d) {
+     jQuery.getJSON("/profiles.json", function (d) {
 	 console.log(d)
 	 for (i in d) {
 	     var lat = d[i]['latitude'],
 		 lon = d[i]['longitude'];
-	     add_marker(d[i].name, lat, lon, map);
+	     add_marker(d[i].first_name+" "+d[i].last_name, lat, lon, map);
 	 }
 
 	 if (d.length == 0) {

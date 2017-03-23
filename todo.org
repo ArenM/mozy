@@ -1,5 +1,5 @@
-* IN_PROGRESS Login
-** IN_PROGRESS Styles
+* QA Login
+** QA Styles
 ** TODO Manual user confermation
 * TODO User Profile
 ** TODO Create User Profile
@@ -14,13 +14,13 @@
 * TODO View other user profile
 ** TODO Trips
 ** TODO Rides
-* TODO Map
-** TODO Markers
-*** TODO Popups
-**** TODO Name
+* QA Map
+** QA Markers
+*** QA Popups
+**** QA Name
 **** TODO Ride days
 **** IDIEA Trip days
-
+* Tables
 Parts
 | Name       | Function                                                                                                            | t |
 |------------+---------------------------------------------------------------------------------------------------------------------+---|
@@ -32,10 +32,21 @@ Parts
 | Profiles   | Manage Profile: profile management, holds profile info, has_many Drives, has_namy <Needed Rides>, view profile page | s |
 | User       | The User management section, from devise, has_one Profile                                                           | o |
 
-
 columnn t is type
 | key | value      |
 |-----+------------|
 | c   | controller |
 | s   | scaffold   |
 | o   | other      |
+
+Profiles
+| key            | type      | ediable |
+|----------------+-----------+---------|
+| user           | reference | no      |
+| first_name     | string    | yes     |
+| last_name      | string    | yes     |
+| street_assress | string    | yes     |
+| town           | string    | yes     |
+| zipcode        | int       | yes     |
+| latitude       | float     | no      |
+| longitude      | float     | no      |
