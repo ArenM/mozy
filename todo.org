@@ -1,5 +1,5 @@
 * IN_PROGRESS Login
-** TODO Styles
+** IN_PROGRESS Styles
 ** TODO Manual user confermation
 * TODO User Profile
 ** TODO Create User Profile
