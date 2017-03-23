@@ -9,10 +9,13 @@
   </head>
 
   <body>
-      <%= render partial: "shared/menu", flash: flash %>
-      <div class="container">
-	  <%= render partial: "shared/flash_message", flash: flash %>
-	  <%= yield %>
-      </div>
+      <%= render partial: "shared/menu" %>
+      <% if controller_name == "find" && controller.action_name == "map" %>
+	  <%= render partial: "shared/content" %>
+      <% else %>
+	  <div class="container" style="margin-top: 2rem">
+	      <%= render partial: "shared/content" %>
+	  </div>
+      <% end %>
   </body>
 </html>

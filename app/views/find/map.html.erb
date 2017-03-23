@@ -1,2 +1,55 @@
-<h1>Find#map</h1>
-<p>Find me in app/views/find/map.html.erb</p>
+<div style="height: calc(100vh - 56px);">
+    <div id="map" style="width: 100%; min-height: 100%;"></div>
+</div>
+<!--script>
+     var map = L.map('map').setView([51.505, -0.09], 13);
+
+     L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+     attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+     }).addTo(map);
+     </script-->
+<script>
+ var bounds,
+     markers = [],
+     center = [],
+     bounds = [];
+ 
+ var map = L.map('map');
+ L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+     maxZoom: 19,
+     attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+ }).addTo(map);
+
+ function add_marker(name, lat, lon, map) {
+     var marker = L.marker([lat, lon]).addTo(map)
+		   .bindPopup(name);
+     center.push([lat, lon]);
+     var rawBounds = L.bounds(center);
+     var bound = [[rawBounds['min']['x'], rawBounds['min']['y']],
+		  [rawBounds['max']['x'], rawBounds['max']['y']]];
+     bounds.push(bound);
+     markers.push(marker);
+ }
+
+ function populate_map() {
+     jQuery.getJSON("/rides/index.json", function (d) {
+	 console.log(d)
+	 for (i in d) {
+	     var lat = d[i]['latitude'],
+		 lon = d[i]['longitude'];
+	     add_marker(d[i].name, lat, lon, map);
+	 }
+
+	 if (d.length == 0) {
+	     map.setView([43.0751873, -72.2711498], 11);
+	 }
+
+	 map.fitBounds(bounds)
+     })
+	   .error(function (e) {
+	       map.setView([43.0751873, -72.2711498], 11);
+	   });
+ }
+ add_marker("Leaf", 43.0751873, -72.2711498, map);
+ populate_map()
+</script>
