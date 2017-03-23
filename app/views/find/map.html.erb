@@ -1,13 +1,6 @@
 <div style="height: calc(100vh - 56px);">
     <div id="map" style="width: 100%; min-height: 100%;"></div>
 </div>
-<!--script>
-     var map = L.map('map').setView([51.505, -0.09], 13);
-
-     L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
-     attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-     }).addTo(map);
-     </script-->
 <script>
  var bounds,
      markers = [],
@@ -33,18 +26,28 @@
 
  function populate_map() {
      jQuery.getJSON("/profiles.json", function (d) {
-	 console.log(d)
 	 for (i in d) {
+	     // set lat and lon varibles
 	     var lat = d[i]['latitude'],
 		 lon = d[i]['longitude'];
-	     add_marker(d[i].first_name+" "+d[i].last_name, lat, lon, map);
+	     // log lat lon varibles for debugging
+	     console.log('lat, long:', lat, lon)
+	     // makesure lat and long varibles are not null
+	     if (lat != null && lon != null) {
+		 add_marker(d[i].first_name+" "+d[i].last_name, lat, lon, map);
+	     } else {
+		 console.log("the location can't have null values")
+	     }
 	 }
 
-	 if (d.length == 0) {
-	     map.setView([43.0751873, -72.2711498], 11);
-	 }
-
+	 // Set map view to include all markers
 	 map.fitBounds(bounds)
+
+	 // Zoom out and center on leaf if there is only one marker
+	 if (center.length <= 1) {
+	     map.setView([43.0751873, -72.2711498], 11);
+	     console.log("reset view")
+	 }
      })
 	   .error(function (e) {
 	       map.setView([43.0751873, -72.2711498], 11);
