@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170323213631) do
+ActiveRecord::Schema.define(version: 20170323223731) do
 
   create_table "profiles", force: :cascade do |t|
     t.integer  "user_id"
@@ -36,7 +36,7 @@ ActiveRecord::Schema.define(version: 20170323213631) do
     t.string   "to"
     t.string   "meeting_place"
     t.string   "driver_first_name"
-    t.string   "driver_lase_name"
+    t.string   "driver_last_name"
     t.text     "notes"
     t.datetime "created_at",        null: false
     t.datetime "updated_at",        null: false

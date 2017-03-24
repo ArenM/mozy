@@ -11,57 +11,52 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :user_id %>
-    <%= f.text_field :user_id %>
+  <div class="form-group">
+      <%= f.label :meeting_time %>
+      <%= f.time_select :meeting_time, class: "form-control" %>
   </div>
 
-  <div class="field">
-    <%= f.label :meeting_time %>
-    <%= f.time_select :meeting_time %>
+  <div class="form-group">
+      <%= f.label :start_date %>
+      <%= f.date_select :start_date, class: "form-control" %>
   </div>
 
-  <div class="field">
-    <%= f.label :start_date %>
-    <%= f.date_select :start_date %>
+  <div class="form-group">
+      <%= f.label :end_date %>
+      <%= f.date_select :end_date, class: "form-control" %>
   </div>
 
-  <div class="field">
-    <%= f.label :end_date %>
-    <%= f.date_select :end_date %>
+  <div class="form-group">
+      <%= f.label :from %>
+      <%= f.text_field :from, class: "form-control" %>
   </div>
 
-  <div class="field">
-    <%= f.label :from %>
-    <%= f.text_field :from %>
+  <div class="form-group">
+      <%= f.label :to %>
+      <%= f.text_field :to, class: "form-control" %>
   </div>
 
-  <div class="field">
-    <%= f.label :to %>
-    <%= f.text_field :to %>
+  <div class="form-group">
+      <%= f.label :meeting_place %>
+      <%= f.text_field :meeting_place, class: "form-control" %>
   </div>
 
-  <div class="field">
-    <%= f.label :meeting_place %>
-    <%= f.text_field :meeting_place %>
+  <div class="form-group">
+      <%= f.label :driver_first_name %>
+      <%= f.text_field :driver_first_name, class: "form-control" %>
   </div>
 
-  <div class="field">
-    <%= f.label :driver_first_name %>
-    <%= f.text_field :driver_first_name %>
+  <div class="form-group">
+      <%= f.label :driver_last_name %>
+      <%= f.text_field :driver_last_name, class: "form-control" %>
   </div>
 
-  <div class="field">
-    <%= f.label :driver_lase_name %>
-    <%= f.text_field :driver_lase_name %>
-  </div>
-
-  <div class="field">
-    <%= f.label :notes %>
-    <%= f.text_area :notes %>
+  <div class="form-group">
+      <%= f.label :notes %>
+      <%= f.text_area :notes, class: "form-control" %>
   </div>
 
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit "Save Changes", class: "btn btn-primary" %>
   </div>
 <% end %>

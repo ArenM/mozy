@@ -17,7 +17,7 @@ class TripsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create trip" do
     assert_difference('Trip.count') do
-      post trips_url, params: { trip: { driver_first_name: @trip.driver_first_name, driver_lase_name: @trip.driver_lase_name, end_date: @trip.end_date, from: @trip.from, meeting_place: @trip.meeting_place, meeting_time: @trip.meeting_time, notes: @trip.notes, start_date: @trip.start_date, to: @trip.to, user_id: @trip.user_id } }
+      post trips_url, params: { trip: { driver_first_name: @trip.driver_first_name, driver_last_name: @trip.driver_last_name, end_date: @trip.end_date, from: @trip.from, meeting_place: @trip.meeting_place, meeting_time: @trip.meeting_time, notes: @trip.notes, start_date: @trip.start_date, to: @trip.to, user_id: @trip.user_id } }
     end
 
     assert_redirected_to trip_url(Trip.last)
@@ -34,7 +34,7 @@ class TripsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update trip" do
-    patch trip_url(@trip), params: { trip: { driver_first_name: @trip.driver_first_name, driver_lase_name: @trip.driver_lase_name, end_date: @trip.end_date, from: @trip.from, meeting_place: @trip.meeting_place, meeting_time: @trip.meeting_time, notes: @trip.notes, start_date: @trip.start_date, to: @trip.to, user_id: @trip.user_id } }
+    patch trip_url(@trip), params: { trip: { driver_first_name: @trip.driver_first_name, driver_last_name: @trip.driver_last_name, end_date: @trip.end_date, from: @trip.from, meeting_place: @trip.meeting_place, meeting_time: @trip.meeting_time, notes: @trip.notes, start_date: @trip.start_date, to: @trip.to, user_id: @trip.user_id } }
     assert_redirected_to trip_url(@trip)
   end
 

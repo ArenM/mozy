@@ -2,24 +2,24 @@
 
 one:
   user: one
-  meeting_time: 2017-03-23 17:36:31
+  meeting_time: 2017-03-23 18:37:31
   start_date: 2017-03-23
   end_date: 2017-03-23
   from: MyString
   to: MyString
   meeting_place: MyString
   driver_first_name: MyString
-  driver_lase_name: MyString
+  driver_last_name: MyString
   notes: MyText
 
 two:
   user: two
-  meeting_time: 2017-03-23 17:36:31
+  meeting_time: 2017-03-23 18:37:31
   start_date: 2017-03-23
   end_date: 2017-03-23
   from: MyString
   to: MyString
   meeting_place: MyString
   driver_first_name: MyString
-  driver_lase_name: MyString
+  driver_last_name: MyString
   notes: MyText

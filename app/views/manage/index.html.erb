@@ -9,15 +9,26 @@
     <%= current_user.profile.zipcode %><br>
     <%= link_to "More", profile_path(current_user.profile.id) %>
 </p>
-<% require 'date' %>
-<h3><%= link_to "Trips" %></h3>
-<p>Trips that are being taken</p>
-<p>Trips that are being taken</p>
-<p>Trips that are being taken</p>
+
+<h3><%= link_to "Trips", trips_path %></h3>
+<% @trips.each do |trip| %>
+    <%= trip.meeting_time.to_time.strftime('%I:%M %p') %><br>
+    <%= trip.start_date %><br>
+    <%= trip.end_date %><br>
+    <%= trip.from %><br>
+    <%= trip.to %><br>
+    <%= trip.meeting_place %><br>
+    <%= trip.driver_first_name? ? trip.driver_first_name : "First Name" %><br>
+    <%= trip.driver_last_name? ? trip.driver_last_name : "Last Name"%><br>
+    <%= trip.notes if trip.notes? %><br>
+    <hr>
+<% end %>
+
 <h3><%= link_to "Rides" %></h3>
 <p>Rides that are being taken</p>
 <p>Rides that are being taken</p>
 <p>Rides that are being taken</p>
+
 <h3><%= link_to "Needed Rides" %></h3>
 <p>Rides That would be helpful*</p>
 <p>Rides That would be helpful*</p>

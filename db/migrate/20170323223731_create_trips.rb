@@ -9,7 +9,7 @@ class CreateTrips < ActiveRecord::Migration[5.0]
       t.string :to
       t.string :meeting_place
       t.string :driver_first_name
-      t.string :driver_lase_name
+      t.string :driver_last_name
       t.text :notes
 
       t.timestamps
