@@ -1,5 +1,4 @@
 <h1>Trips</h1>
-
 <table class="table table-default">
     <thead>
 	<tr>
@@ -29,6 +28,8 @@
 		<td><%= trip.driver_last_name %></td>
 		<td><%= trip.notes %></td>
 		<td><%= link_to 'Show', trip %></td>
+		<td><%= link_to 'Edit', edit_trip_path(trip) %></td>
+		<td><%= link_to 'Destroy', trip, method: :delete, data: { confirm: 'Are you sure?' } %></td>
 	    </tr>
 	<% end %>
     </tbody>
@@ -36,4 +37,5 @@
 
 <br>
 
-<%= link_to 'Manage Your Trips', manage_trips_path %>
+<%= link_to 'New Trip', new_trip_path %> |
+<%= link_to 'All Trips', trips_path %>

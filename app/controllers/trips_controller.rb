@@ -4,6 +4,12 @@ class TripsController < ApplicationController
   # GET /trips
   # GET /trips.json
   def index
+    @trips = Trip.all
+  end
+
+  # GET /trips/manage
+  # GET /trips/manage.json
+  def manage
     @trips = Trip.where(:user => current_user)
   end
 
@@ -19,6 +25,9 @@ class TripsController < ApplicationController
 
   # GET /trips/1/edit
   def edit
+    if current_user.id != @trip.user_id
+      redirect_to trips_path, :flash => {error: 'You can\'t edit that trip!' }
+    end
   end
 
   # POST /trips
@@ -58,10 +67,14 @@ class TripsController < ApplicationController
   # DELETE /trips/1
   # DELETE /trips/1.json
   def destroy
-    @trip.destroy
-    respond_to do |format|
-      format.html { redirect_to trips_url, notice: 'Trip was successfully destroyed.' }
-      format.json { head :no_content }
+    if current_user.id == @trip.user_id
+      @trip.destroy
+      respond_to do |format|
+        format.html { redirect_to trips_url, notice: 'Trip was successfully destroyed.' }
+        format.json { head :no_content }
+      end
+    else
+      redirect_to trips_path, :flash => {error: 'You can\'t delete that trip!' }
     end
   end
 
