@@ -2,10 +2,9 @@
 
 <h1>Trips</h1>
 
-<table>
+<table class="table table-default">
   <thead>
     <tr>
-      <th>User</th>
       <th>Meeting time</th>
       <th>Start date</th>
       <th>End date</th>
@@ -22,19 +21,18 @@
   <tbody>
     <% @trips.each do |trip| %>
       <tr>
-        <td><%= trip.user %></td>
-        <td><%= trip.meeting_time %></td>
-        <td><%= trip.start_date %></td>
-        <td><%= trip.end_date %></td>
-        <td><%= trip.from %></td>
-        <td><%= trip.to %></td>
-        <td><%= trip.meeting_place %></td>
-        <td><%= trip.driver_first_name %></td>
-        <td><%= trip.driver_last_name %></td>
-        <td><%= trip.notes %></td>
-        <td><%= link_to 'Show', trip %></td>
-        <td><%= link_to 'Edit', edit_trip_path(trip) %></td>
-        <td><%= link_to 'Destroy', trip, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <td><%= trip.meeting_time.strftime('%H:%M %p') %></td>
+          <td><%= trip.start_date.strftime('%B %d %G') %></td>
+          <td><%= trip.end_date.strftime('%B %d %G') %></td>
+          <td><%= trip.from %></td>
+          <td><%= trip.to %></td>
+          <td><%= trip.meeting_place %></td>
+          <td><%= trip.driver_first_name %></td>
+          <td><%= trip.driver_last_name %></td>
+          <td><%= trip.notes %></td>
+          <td><%= link_to 'Show', trip %></td>
+          <td><%= link_to 'Edit', edit_trip_path(trip) %></td>
+          <td><%= link_to 'Destroy', trip, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
