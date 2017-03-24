@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-  has_one :profile
+  has_one :profile, :dependent => :destroy
   after_create :add_profile
 
   # Include default devise modules. Others available are:
