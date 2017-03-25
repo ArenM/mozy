@@ -13,9 +13,9 @@
      attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
  }).addTo(map);
 
- function add_marker(name, lat, lon, map) {
+ function add_marker(popup_content,lat, lon, map) {
      var marker = L.marker([lat, lon]).addTo(map)
-		   .bindPopup(name);
+		   .bindPopup(popup_content);
      center.push([lat, lon]);
      var rawBounds = L.bounds(center);
      var bound = [[rawBounds['min']['x'], rawBounds['min']['y']],
@@ -25,16 +25,23 @@
  }
 
  function populate_map() {
-     jQuery.getJSON("/profiles.json", function (d) {
-	 for (i in d) {
+     jQuery.getJSON("/find/index.json", function (data) {
+	 console.log(data)
+	 for (i in data) {
+	     d = data[i].profile
 	     // set lat and lon varibles
-	     var lat = d[i]['latitude'],
-		 lon = d[i]['longitude'];
-	     // log lat lon varibles for debugging
-	     console.log('lat, long:', lat, lon)
-	     // makesure lat and long varibles are not null
+	     var lat = d['latitude'],
+		 lon = d['longitude'];
 	     if (lat != null && lon != null) {
-		 add_marker(d[i].first_name+" "+d[i].last_name, lat, lon, map);
+		 pop_cont = $('<div></div>');
+		 info = $("<p></p>").append(d.first_name, " ", d.last_name)
+		 pop_cont.append(info)
+		 href = $("<a>View More</a>").attr('href', data[i].href)
+		 pop_cont.append(href)
+		 //add_marker(d.first_name+" "+d.last_name+data[i].href, lat, lon, map);
+		 final_popup_content = pop_cont.html()
+		 console.log(final_popup_content)
+		 add_marker(final_popup_content, lat, lon, map);
 	     } else {
 		 console.log("the location can't have null values")
 	     }
