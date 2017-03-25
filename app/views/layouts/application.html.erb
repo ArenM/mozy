@@ -12,7 +12,7 @@
       <%= render partial: "shared/menu" %>
       <% if controller_name == "find" && controller.action_name == "map" %>
 	  <%= render partial: "shared/content" %>
-      <% elsif controller_name + '#' + controller.action_name == 'trips#index' || 'trips#manage' %>
+      <% elsif ['trips#index', 'trips#manage'].include? controller_name + '#' + controller.action_name %>
 	  <div class="container-fluid" style="margin-top: 2rem">
 	      <%= render partial: "shared/content" %>
 	  </div>
