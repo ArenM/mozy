@@ -25,8 +25,8 @@
 		<td><%= trip.from %></td>
 		<td><%= trip.to %></td>
 		<td><%= trip.meeting_place %></td>
-		<td><%= trip.driver_first_name %></td>
-		<td><%= trip.driver_last_name %></td>
+		<td><%= trip.driver_first_name? ? trip.driver_first_name : trip.user.profile.first_name %></td>
+		<td><%= trip.driver_last_name? ? trip.driver_last_name : trip.user.profile.last_name %></td>
 		<td><%= trip.notes %></td>
 		<td><%= link_to 'Show', trip %></td>
 	    </tr>
