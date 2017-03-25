@@ -1,13 +1,14 @@
-* QA Login
+* TODO Login
 ** QA Styles
 ** TODO Manual user confermation
-* QA User Profile
+* TODO User Profile
+** TODO towns on root
 ** QA Create User Profile
 ** QA Edit User Profile
 ** QA Styles
 * QA Homepage to view other users
-** QA Link to user profile
-* TODO User Trips
+** TODO Link to user profile
+* QA User Trips
 ** TODO Styles
 * TODO User Rides
 ** TODO Styles
@@ -20,6 +21,7 @@
 **** QA Name
 **** TODO Ride days
 **** TODO Trip days
+**** TODO Profile Link
 * Tables
 Parts
 | Name         | Function                                                                                                            | t |

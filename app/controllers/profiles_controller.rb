@@ -4,7 +4,7 @@ class ProfilesController < ApplicationController
   # GET /profiles
   # GET /profiles.json
   def index
-    @profiles = Profile.all
+    @profile = current_user.profile
   end
 
   # GET /profiles/1
@@ -14,9 +14,9 @@ class ProfilesController < ApplicationController
   end
 
   # GET /profiles/new
-  def new
-    @profile = Profile.new
-  end
+  #def new
+  #  @profile = Profile.new
+  #end
 
   # GET /profiles/1/edit
   def edit
@@ -24,6 +24,7 @@ class ProfilesController < ApplicationController
 
   # POST /profiles
   # POST /profiles.json
+=begin
   def create
     @profile = Profile.new(profile_params)
 
@@ -37,6 +38,7 @@ class ProfilesController < ApplicationController
       end
     end
   end
+=end
 
   # PATCH/PUT /profiles/1
   # PATCH/PUT /profiles/1.json
@@ -54,6 +56,7 @@ class ProfilesController < ApplicationController
 
   # DELETE /profiles/1
   # DELETE /profiles/1.json
+=begin
   def destroy
     @profile.destroy
     respond_to do |format|
@@ -61,6 +64,7 @@ class ProfilesController < ApplicationController
       format.json { head :no_content }
     end
   end
+=end
 
   private
     # Use callbacks to share common setup or constraints between actions.

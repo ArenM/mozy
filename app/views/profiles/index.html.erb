@@ -1,40 +1,12 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Profiles</h1>
+<h1>Profile</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>User</th>
-      <th>First name</th>
-      <th>Last name</th>
-      <th>Street address</th>
-      <th>Town</th>
-      <th>State</th>
-      <th>Zipcode</th>
-      <th>Latitude</th>
-      <th>Longitude</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @profiles.each do |profile| %>
-      <tr>
-        <td><%= profile.user.id %></td>
-        <td><%= profile.first_name %></td>
-        <td><%= profile.last_name %></td>
-        <td><%= profile.street_address %></td>
-        <td><%= profile.town %></td>
-        <td><%= profile.state %></td>
-        <td><%= profile.zipcode %></td>
-        <td><%= profile.latitude %></td>
-        <td><%= profile.longitude %></td>
-        <td><%= link_to 'Show', profile %></td>
-        <td><%= link_to 'Edit', edit_profiles_path %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
+<p>
+    Your public name is: <%= @profile.first_name %> <%= @profile.last_name %><br/>
+    Your Address is: <%= @profile.street_address %> <%= @profile.town %> <%= @profile.state %> <%= @profile.zipcode %><br>
+    Your latitude is: <%= @profile.latitude %><br>
+    Your longitude is: <%= @profile.longitude %><br>
+    Locations by <%= link_to "Open Street Map Nominatim", "http://nominatim.openstreetmap.org/" %>
+</p>
+<%= link_to 'Edit', edit_profiles_path %>
