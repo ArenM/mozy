@@ -11,6 +11,7 @@ class ProfilesController < ApplicationController
   # GET /profiles/1.json
   def show
     set_url_profile
+    @trip = Trip.where(:user => @profile.user)
   end
 
   # GET /profiles/new
