@@ -1,4 +1,11 @@
 Rails.application.routes.draw do
+  get 'contact', to: 'contact_user#index'
+  post 'contact/send', to: 'contact_user#send_message'
+
+  #get 'contact_user/index'
+  #post 'contact_user/send'
+
+  
   resources :trips do
     collection do
       get 'manage', :action => 'manage'
