@@ -1,0 +1,21 @@
+<h1>ContactUser#index</h1>
+<p>Find me in app/views/contact_user/index.html.erb</p>
+<%= form_tag(contact_send_path, method: "post") do |f|%>
+    <div class="form-group">
+	<%= label_tag :from %>
+	<%= text_field_tag :from, "", class: "form-control" %>
+    </div>
+    <div class="form-group">
+	<%= label_tag :to %>
+	<%= text_field_tag :to, "", class: "form-control" %>
+    </div>
+    <div class="form-group">
+	<%= label_tag :subject %>
+	<%= text_field_tag :subject, "", class: "form-control" %>
+    </div>
+    <div class="form-group">
+	<%= label_tag :message %>
+	<%= text_area_tag :message, "", class: "form-control" %>
+    </div>
+    <%=  submit_tag("Send") %>
+<% end %>

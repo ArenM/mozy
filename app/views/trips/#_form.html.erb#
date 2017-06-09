@@ -1,0 +1,62 @@
+\<%= form_for(trip) do |f| %>
+  <% if trip.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(trip.errors.count, "error") %> prohibited this trip from being saved:</h2>
+
+      <ul>
+      <% trip.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+      <%= f.label :meeting_time %>
+      <%= f.time_select :meeting_time, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+      <%= f.label :start_date %>
+      <%= f.date_select :start_date, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+      <%= f.label :end_date %>
+      <%= f.date_select :end_date, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+      <%= f.label :from %>
+      <%= f.text_field :from, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+      <%= f.label :to %>
+      <%= f.text_field :to, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+      <%= f.label :meeting_place %>
+      <%= f.text_field :meeting_place, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+      <%= f.label :driver_first_name %>
+      <%= f.text_field :driver_first_name, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+      <%= f.label :driver_last_name %>
+      <%= f.text_field :driver_last_name, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+      <%= f.label :notes %>
+      <%= f.text_area :notes, class: "form-control" %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Save Changes", class: "btn btn-primary" %>
+  </div>
+<% end %>

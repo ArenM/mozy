@@ -1,0 +1,4 @@
+class ContactUserController < ApplicationController
+  def index
+  end
+end
