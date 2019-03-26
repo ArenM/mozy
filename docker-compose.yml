@@ -1,0 +1,15 @@
+version: '3'
+services:
+  db:
+    image: mongo
+   environment:
+     MONGO_INITDB_ROOT_USERNAME: root
+     MONGO_INITDB_ROOT_PASSWORD: root
+  app:
+    build: ./backend
+    volumes:
+      - ./:/srv/
+    ports:
+      - 5000:5000
+    environment:
+      FLASK_APP: "/srv/backend"
