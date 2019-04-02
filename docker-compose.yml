@@ -4,6 +4,8 @@ services:
     image: mongo
     expose:
       - 27017
+    volumes:
+      - ./db/docker-entrypoint-initdb.d/mozy.js:/docker-entrypoint-initdb.d/mozy.js
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: root

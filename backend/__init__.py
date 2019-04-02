@@ -18,8 +18,8 @@ def create_app():
         'password': 'root'
     }
 
-    # db = MongoEngine(app)
-    db.init_app(app)
+    db = MongoEngine(app)
+    # db.init_app(app)
     user_datastore = MongoEngineUserDatastore(db, User, Role)
     security = Security(app, user_datastore)
 
