@@ -1,8 +1,8 @@
-db = new Mongo().getDB('test')
-db.getSiblingDB('mozy')
-db.getSiblingDB('admin')
-db.updateUser('root', {
-  roles: [
-    {role: 'admin', db: 'mozy'}
-  ]
-})
+db = new Mongo().getDB( 'mozy' )
+db.createUser(
+  {
+    user: 'mozy',
+    pwd: 'mozy',
+    roles: [ { role : 'readWrite', db : 'mozy' } ]
+  }
+)

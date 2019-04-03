@@ -14,9 +14,11 @@ def create_app():
         'db': 'mozy',
         'host': 'db',
         # 'port': 2071,
-        'username': 'root',
-        'password': 'root'
+        'username': 'mozy',
+        'password': 'mozy',
+        'authentication_source': 'mozy'
     }
+    app.config['SECURITY_PASSWORD_SALT'] = 'dev'
 
     db = MongoEngine(app)
     # db.init_app(app)
@@ -33,7 +35,7 @@ def create_app():
         user_datastore.create_user(email='rn@peacevolution.org', password='password')
 
     @app.route('/')
-    # @login_required
+    @login_required
     def root():
         return "Hello World"
 
