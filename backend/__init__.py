@@ -25,10 +25,8 @@ def create_app():
     user_datastore = MongoEngineUserDatastore(db, User, Role)
     security = Security(app, user_datastore)
 
-    try:
+    if not os.direxists(app.instance_path):
         os.makedirs(app.instance_path)
-    except FileExistsError:
-        pass
 
     @app.before_first_request
     def create_user():
