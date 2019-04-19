@@ -1,6 +1,6 @@
 from flask import Flask
 from flask_mongoengine import MongoEngine
-from flask_security import Security, MongoEngineUserDatastore, UserMixin, RoleMixin, login_required
+from flask_security import Security, MongoEngineUserDatastore, UserMixin, RoleMixin, roles_required
 from backend.db import db, User, Role
 import os
 
@@ -10,6 +10,7 @@ def create_app():
     # app.config.from_pyfile('config.py')
 
     app.config['SECRET_KEY'] = 'dev'
+    app.config['WTF_CSRF_ENABLED'] = False
     app.config['MONGODB_SETTINGS'] = {
         'db': 'mozy',
         'host': 'db',
@@ -25,15 +26,15 @@ def create_app():
     user_datastore = MongoEngineUserDatastore(db, User, Role)
     security = Security(app, user_datastore)
 
-    if not os.direxists(app.instance_path):
+    if not os.path.isdir(app.instance_path):
         os.makedirs(app.instance_path)
 
     @app.before_first_request
     def create_user():
-        user_datastore.create_user(email='rn@peacevolution.org', password='password')
+        user_datastore.create_user(email='rn@peacevolution.org', password='password', roles=['user'])
 
     @app.route('/')
-    @login_required
+    @roles_required('user')
     def root():
         return "Hello World"
 
