@@ -1,0 +1,7 @@
+Token based authentication due:2019-04-19
+User Signup due:2019-04-26
+User Profile Display due:2019-05-3
+Edit User Profile due:2019-05-10
+Add Trips due:2019-05-17
+List of Trips due:2019-05-17
+Map of Trips due:2019-05-24
