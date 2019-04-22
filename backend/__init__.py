@@ -38,4 +38,11 @@ def create_app():
     def root():
         return "Hello World"
 
+    @app.after_request
+    def after_request_cors(resp):
+        resp.headers.set('Access-Control-Allow-Origin', "http://localhost:3000")
+        resp.headers.set('Access-Control-Allow-Methods', 'POST, GET, OPTIONS')
+        resp.headers.set('Access-Control-Allow-Headers', 'Content-Type')
+        return resp
+
     return app
