@@ -1,9 +1,8 @@
 FROM alpine:latest
 
-COPY ./requirements.txt /
-
-#RUN apk add python3 python3-dev linux-headers gcc
 RUN apk add python3 python3-dev musl-dev libffi-dev gcc
+
+COPY ./requirements.txt /
 RUN pip3 install -r requirements.txt
 
 ENV FLASK_ENV=development
