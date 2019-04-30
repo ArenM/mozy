@@ -18,26 +18,15 @@ class LoginContainer extends Component {
 
   submit(e) {
     e.preventDefault();
-    fetch("http://localhost:5000/login", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        email: this.state.user.email,
-        password: this.state.user.password
-      })
-    })
-      .then(d => d.json())
-      .then(r => {
-        if (r.meta.code === 200) {
-          Auth.setKey(r.response.user.authentication_token);
-        } else if (r.meta.code === 400) {
-          this.setState({ error: r.response.errors });
+    Auth.authenticate(
+      this.state.user.email,
+      this.state.user.password,
+      (secuss, _) => {
+        if (secuss) {
           this.props.history.push("/");
         }
-      })
-      .catch(e => console.log(e));
+      }
+    );
   }
 
   formChange(e) {

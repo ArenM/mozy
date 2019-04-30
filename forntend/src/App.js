@@ -5,12 +5,30 @@ import Auth from "./utils/Auth";
 import "./App.css";
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      key: "",
+      authenticated: false
+    };
+  }
+
+  componentDidMount() {
+    const key = Auth.getKey();
+    if (key !== null && key.type === String && this.state.key !== key) {
+      this.setState({ key: Auth.getKey(), authenticated: true });
+    } else {
+      this.setState({ key: "", authenticated: false });
+    }
+  }
+
   render() {
     return (
       <div>
         <Router>
           <h1>Hello</h1>
-          {!Auth.authenticated() ? (
+          {!this.state.authenticated ? (
             <div>
               <Link to="/login">Login</Link>
               <Route path="/login" component={LoginContainer} />
@@ -19,7 +37,7 @@ class App extends Component {
             <div>
               <button onClick={Auth.LogOut}>Logout</button>
               <p>Congradulations! you're loged in</p>
-              <p>Your key is: {Auth.getKey()}</p>
+              <p>Your key is: {this.state.key}</p>
             </div>
           )}
         </Router>

@@ -21,8 +21,8 @@ def create_app():
     }
     app.config['SECURITY_PASSWORD_SALT'] = 'dev'
 
-    db = MongoEngine(app)
-    # db.init_app(app)
+    # db = MongoEngine(app)
+    db.init_app(app)
     user_datastore = MongoEngineUserDatastore(db, User, Role)
     security = Security(app, user_datastore)
 
