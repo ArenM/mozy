@@ -1,4 +1,5 @@
-Token based authentication due:2019-04-19
+x Token based authentication due:2019-04-19
+Convert frontend to redux due:5-5-2019
 User Login due:2019-04-26
 User Signup due:2019-04-26
 User Profile Display due:2019-05-3
