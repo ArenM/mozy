@@ -4,6 +4,8 @@ import LoginContainer from "./containers/LoginContainer";
 import Auth from "./utils/Auth";
 import "./App.css";
 
+import { connect } from "react-redux";
+
 class App extends Component {
   constructor(props) {
     super(props);
@@ -46,4 +48,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default connect()(App);
