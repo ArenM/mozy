@@ -2,6 +2,9 @@ import React, { Component } from "react";
 import LoginPage from "../components/LoginPage";
 import Auth from "../utils/Auth";
 
+import { connect } from "react-redux";
+import { changeToken } from "../actions/userActions";
+
 class LoginContainer extends Component {
   constructor(props) {
     super(props);
@@ -21,8 +24,9 @@ class LoginContainer extends Component {
     Auth.authenticate(
       this.state.user.email,
       this.state.user.password,
-      (secuss, _) => {
-        if (secuss) {
+      (status, user) => {
+        if (status === true) {
+          this.props.setToken(user.authentication_token);
           this.props.history.push("/");
         }
       }
@@ -47,4 +51,14 @@ class LoginContainer extends Component {
   }
 }
 
-export default LoginContainer;
+const mapStateToProps = _ => ({});
+const mapDispatchToPorps = dispatch => ({
+  setToken(token) {
+    dispatch(changeToken(token));
+  }
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToPorps
+)(LoginContainer);

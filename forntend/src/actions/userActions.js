@@ -7,8 +7,8 @@ export const changeToken = (token: String) => {
   };
 };
 
-export const other = () => {
+export const deleteToken = () => {
   return {
-    type: "OTHER"
+    type: type.DELETE_TOKEN
   };
 };

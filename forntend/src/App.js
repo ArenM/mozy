@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import LoginContainer from "./containers/LoginContainer";
-import Auth from "./utils/Auth";
 import "./App.css";
 
 import { connect } from "react-redux";
+import { deleteToken } from "./actions/userActions";
 
 class App extends Component {
   constructor(props) {
@@ -29,8 +29,8 @@ class App extends Component {
             </div>
           ) : (
             <div>
-              <button onClick={Auth.LogOut}>Logout</button>
-              <p>Congradulations! you're loged in</p>
+              <button onClick={this.props.deleteToken}>Logout</button>
+              <p>Congratulations! you're logged in</p>
               <p>Your key is: {this.props.user.token}</p>
             </div>
           )}
@@ -44,10 +44,11 @@ const mapStateToProps = state => {
   return state;
 };
 
-const mapDispatchToProps = dispatch => {
-  return {};
-};
-
+const mapDispatchToProps = dispatch => ({
+  deleteToken() {
+    dispatch(deleteToken());
+  }
+});
 export default connect(
   mapStateToProps,
   mapDispatchToProps
