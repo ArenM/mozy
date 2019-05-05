@@ -10,19 +10,11 @@ class App extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      key: "",
-      authenticated: false
-    };
-  }
-
-  componentDidMount() {
-    const key = Auth.getKey();
-    if (key !== null && key.type === String && this.state.key !== key) {
-      this.setState({ key: Auth.getKey(), authenticated: true });
-    } else {
-      this.setState({ key: "", authenticated: false });
-    }
+    // this.state = {
+    //   key: "",
+    //   authenticated: false
+    // };
+    console.log(this.props.user.token);
   }
 
   render() {
@@ -30,7 +22,7 @@ class App extends Component {
       <div>
         <Router>
           <h1>Hello</h1>
-          {!this.state.authenticated ? (
+          {this.props.user.token === "" ? (
             <div>
               <Link to="/login">Login</Link>
               <Route path="/login" component={LoginContainer} />
@@ -39,7 +31,7 @@ class App extends Component {
             <div>
               <button onClick={Auth.LogOut}>Logout</button>
               <p>Congradulations! you're loged in</p>
-              <p>Your key is: {this.state.key}</p>
+              <p>Your key is: {this.props.user.token}</p>
             </div>
           )}
         </Router>
@@ -48,4 +40,15 @@ class App extends Component {
   }
 }
 
-export default connect()(App);
+const mapStateToProps = state => {
+  return state;
+};
+
+const mapDispatchToProps = dispatch => {
+  return {};
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(App);
