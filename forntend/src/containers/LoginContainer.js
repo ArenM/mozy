@@ -1,9 +1,8 @@
 import React, { Component } from "react";
 import LoginPage from "../components/LoginPage";
-import Auth from "../utils/Auth";
 
 import { connect } from "react-redux";
-import { changeToken } from "../actions/userActions";
+import { changeToken, authenticate } from "../actions/userActions";
 
 class LoginContainer extends Component {
   constructor(props) {
@@ -21,16 +20,7 @@ class LoginContainer extends Component {
 
   submit(e) {
     e.preventDefault();
-    Auth.authenticate(
-      this.state.user.email,
-      this.state.user.password,
-      (status, user) => {
-        if (status === true) {
-          this.props.setToken(user.authentication_token);
-          this.props.history.push("/");
-        }
-      }
-    );
+    this.props.authenticate(this.state.user.email, this.state.user.password);
   }
 
   formChange(e) {
@@ -55,6 +45,9 @@ const mapStateToProps = _ => ({});
 const mapDispatchToPorps = dispatch => ({
   setToken(token) {
     dispatch(changeToken(token));
+  },
+  authenticate(email: String, password: String) {
+    dispatch(authenticate(email, password));
   }
 });
 
