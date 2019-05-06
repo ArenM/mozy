@@ -1,8 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-const LoginPage = ({ onSubmit, onChange, user }) => (
+const LoginPage = ({ onSubmit, onChange, user, errors }) => (
   <div>
+    <span style={{ color: "red" }}>{errors[0]}</span>
     <form action="/" onSubmit={onSubmit}>
       <div>
         <label>Email</label>
@@ -33,7 +34,8 @@ LoginPage.propTypes = {
   user: PropTypes.shape({
     email: PropTypes.string.isRequired,
     password: PropTypes.string.isRequired
-  })
+  }),
+  errors: PropTypes.arrayOf(PropTypes.string)
 };
 
 export default LoginPage;

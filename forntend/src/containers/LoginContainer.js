@@ -35,13 +35,14 @@ class LoginContainer extends Component {
       <LoginPage
         onSubmit={this.submit}
         onChange={this.formChange}
+        errors={this.props.errors}
         user={this.state.user}
       />
     );
   }
 }
 
-const mapStateToProps = _ => ({});
+const mapStateToProps = state => ({ errors: state.errors.auth_errors });
 const mapDispatchToPorps = dispatch => ({
   setToken(token) {
     dispatch(changeToken(token));
