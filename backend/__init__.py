@@ -40,7 +40,7 @@ def create_app():
 
     @app.after_request
     def after_request_cors(resp):
-        resp.headers.set('Access-Control-Allow-Origin', "http://localhost:3000")
+        resp.headers.set('Access-Control-Allow-Origin', "*")
         resp.headers.set('Access-Control-Allow-Methods', 'POST, GET, OPTIONS')
         resp.headers.set('Access-Control-Allow-Headers', 'Content-Type')
         return resp
