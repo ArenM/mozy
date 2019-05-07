@@ -15,6 +15,7 @@ class App extends Component {
         {this.props.user.token === "" ? (
           <div>
             <Route path="/login" component={LoginContainer} />
+            <Route path="/signup" component={SignupContainer} />
           </div>
         ) : (
           <div>
