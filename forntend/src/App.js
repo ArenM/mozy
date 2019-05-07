@@ -6,6 +6,9 @@ import "./App.css";
 import { connect } from "react-redux";
 import { deleteToken } from "./actions/userActions";
 
+import AppBar from "./components/AppBar";
+import { Button } from "@material-ui/core";
+
 class App extends Component {
   constructor(props) {
     super(props);
@@ -21,7 +24,7 @@ class App extends Component {
     return (
       <div>
         <Router>
-          <h1>Hello</h1>
+          <AppBar />
           {this.props.user.token === "" ? (
             <div>
               <Link to="/login">Login</Link>
@@ -29,7 +32,7 @@ class App extends Component {
             </div>
           ) : (
             <div>
-              <button onClick={this.props.deleteToken}>Logout</button>
+              <Button onClick={this.props.deleteToken}>Logout</Button>
               <p>Congratulations! you're logged in</p>
               <p>Your key is: {this.props.user.token}</p>
             </div>
