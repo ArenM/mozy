@@ -1,19 +1,15 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 import { withStyles } from "@material-ui/core/styles";
 import {
   AppBar,
   Toolbar,
   Typography,
-  Button,
-  IconButton,
-  MenuIcon
+  Button
+  // IconButton,
+  // MenuIcon
 } from "@material-ui/core";
-// import Toolbar from "@material-ui/core/Toolbar";
-// import Typography from "@material-ui/core/Typography";
-// import Button from "@material-ui/core/Button";
-// import IconButton from "@material-ui/core/IconButton";
-// import MenuIcon from "@material-ui/icons/Menu";
 
 const styles = {
   root: {
@@ -28,8 +24,8 @@ const styles = {
   }
 };
 
-function ButtonAppBar(props) {
-  const { classes } = props;
+function MainAppBar(props) {
+  const { classes, authenticated, logOut } = props;
   return (
     <div className={classes.root}>
       <AppBar position="static">
@@ -37,15 +33,30 @@ function ButtonAppBar(props) {
           <Typography variant="h6" color="inherit" className={classes.grow}>
             Mozy
           </Typography>
-          <Button color="inherit">Login</Button>
+          {authenticated ? (
+            <Button color="inherit" onClick={logOut}>
+              Logout
+            </Button>
+          ) : (
+            <div>
+              <Button color="inherit" component={Link} to="/login">
+                Login
+              </Button>
+              <Button color="inherit" component={Link} to="/signup">
+                Signup
+              </Button>
+            </div>
+          )}
         </Toolbar>
       </AppBar>
     </div>
   );
 }
 
-ButtonAppBar.propTypes = {
-  classes: PropTypes.object.isRequired
+MainAppBar.propTypes = {
+  classes: PropTypes.object.isRequired,
+  logOut: PropTypes.func.isRequired,
+  authenticated: PropTypes.bool.isRequired
 };
 
-export default withStyles(styles)(ButtonAppBar);
+export default withStyles(styles)(MainAppBar);

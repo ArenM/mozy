@@ -10,6 +10,7 @@ const store = createStore(
   { user: { token } },
   composeEnhancers(applyMiddleware(thunk))
 );
+
 store.subscribe(() => {
   localStorage.setItem("auth_key", store.getState().user.token);
 });
