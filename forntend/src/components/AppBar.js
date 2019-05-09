@@ -7,8 +7,6 @@ import {
   Toolbar,
   Typography,
   Button
-  // IconButton,
-  // MenuIcon
 } from "@material-ui/core";
 
 const styles = {
