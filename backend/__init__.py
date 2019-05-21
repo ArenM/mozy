@@ -1,8 +1,8 @@
-from flask import Flask
-from flask_mongoengine import MongoEngine
-from flask_security import Security, MongoEngineUserDatastore, UserMixin, RoleMixin, roles_required
-from backend.db import db, User, Role
 import os
+from flask import Flask
+from flask_security import Security, MongoEngineUserDatastore, roles_required
+from backend.db import db, User, Role
+
 
 def create_app():
     app = Flask(__name__, instance_relative_config=True)
@@ -20,6 +20,7 @@ def create_app():
         'authentication_source': 'mozy'
     }
     app.config['SECURITY_PASSWORD_SALT'] = 'dev'
+    app.config['SECURITY_REGISTERABLE'] = 'dev'
 
     # db = MongoEngine(app)
     db.init_app(app)
@@ -31,7 +32,10 @@ def create_app():
 
     @app.before_first_request
     def create_user():
-        user_datastore.create_user(email='rn@peacevolution.org', password='password', roles=['user'])
+        user_datastore.create_user(
+            email='rn@peacevolution.org',
+            password='password',
+            roles=['user'])
 
     @app.route('/')
     @roles_required('user')
