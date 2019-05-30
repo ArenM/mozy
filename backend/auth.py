@@ -1,5 +1,5 @@
 import flask_login
-from backend import db
+from backend.db import db, User
 import flask_praetorian
 
 
@@ -9,8 +9,10 @@ class Auth:
     @param app
     """
     def __init__(self, app):
+        self.app = app
         self.login_manager = flask_login.LoginManager()
-        login_manager.init_app(app)
+        self.login_manager.init_app(app)
 
-        guard = flask_praetorian.Praetorian()
+        self.guard = flask_praetorian.Praetorian()
+        self.guard.init_app(app, User)
 
