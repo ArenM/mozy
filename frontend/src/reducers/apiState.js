@@ -1,4 +1,4 @@
-import { AUTH_FAILED } from "../actions/actionTypes";
+import { AUTH_FAILED, CLEAR_ERRORS } from "../actions/actionTypes";
 
 export default (state = { auth_errors: [""] }, action) => {
   switch (action.type) {
@@ -6,7 +6,11 @@ export default (state = { auth_errors: [""] }, action) => {
       return Object.assign({}, state, {
         auth_errors: action.errors
       });
-    default:
+    case CLEAR_ERRORS:
+      return Object.assign({}, state, {
+        auth_errors: [""]
+      });
+     default:
       return state;
   }
 };

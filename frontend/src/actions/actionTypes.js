@@ -3,3 +3,4 @@ export const DELETE_TOKEN = "DELETE_TOKEN";
 export const AUTHENTICATE = "AUTHENTICATE";
 export const REGISTER = "REGISTER";
 export const AUTH_FAILED = "AUTH_FAILED";
+export const CLEAR_ERRORS = "CLEAR_ERRORS";
