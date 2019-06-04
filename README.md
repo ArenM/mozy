@@ -38,6 +38,7 @@ Authentication: flask-login
       - Display history of messages with that user
 
 # Todo
+[x] User log-in
 [ ] User sign-up
 [ ] User log-in
 [ ] User profile (editable by user)

@@ -16,3 +16,12 @@ class Auth:
         self.guard = flask_praetorian.Praetorian()
         self.guard.init_app(app, User)
 
+    def register(self, email, password):
+        if User.lookup("rn@peacevolution.org"):
+            return (False, "User exists")
+        
+        else:
+            user = User(email=email, password=auth.guard.encrypt_password(password))
+            user.save()
+            reutrn (True, user)
+
