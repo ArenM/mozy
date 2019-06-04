@@ -27,6 +27,26 @@ export const clearErrors = (errors: Object) => {
   };
 };
 
+const loginResp = resp => {
+  return dispatch => {
+    resp
+      .then(r => {
+        if (r.access_token !== undefined) {
+          console.log("OPERATION SUCCESS");
+          dispatch(changeToken(r.access_token));
+          dispatch(clearErrors());
+        } else if (r.message !== undefined) {
+          dispatch(authFailed([r.message]));
+          console.log("OPERATION FAILED", r.message);
+        } else {
+          dispatch(authFailed(["UNKNOWN ERROR"]));
+          console.log("OPERATION FAILED", "UNKNOWN ERROR");
+        }
+      })
+      .catch(e => console.log("HTTP ERROR:", e));
+  };
+};
+
 export const authenticate = (username: String, password: String) => {
   return dispatch => {
     return fetch(`${backendUrl}/login`, {
@@ -38,25 +58,11 @@ export const authenticate = (username: String, password: String) => {
         username,
         password
       })
-    })
-      .then(d => d.json())
-      .then(r => {
-        if (r.access_token !== undefined) {
-          console.log("AUTHENTICATION SUCCESS");
-          dispatch(changeToken(r.access_token));
-          dispatch(clearErrors());
-        } else if (r.status_code === 401) {
-          dispatch(authFailed([r.message]));
-          console.log("AUTHENTICATION FAILED", r.message);
-        } else {
-          dispatch(authFailed(["UNKNOWN ERROR"]));
-        }
-      })
-      .catch(e => console.log("HTTP ERROR:", e));
+    }).then(r => dispatch(loginResp(r.json())));
   };
 };
 
-export const register = (name: String, email: String, password: String) => {
+export const register = (name: String, username: String, password: String) => {
   return dispatch => {
     return fetch(`${backendUrl}/register`, {
       method: "POST",
@@ -64,21 +70,9 @@ export const register = (name: String, email: String, password: String) => {
         "Content-Type": "application/json"
       },
       body: JSON.stringify({
-        email,
-        password,
-        password_confirm: password
+        username,
+        password
       })
-    })
-      .then(d => d.json())
-      .then(r => {
-        if (r.meta.code === 200) {
-          dispatch(changeToken(r.response.user.authentication_token));
-          dispatch(authFailed({ email: [""], password: [""] }));
-        } else if (r.meta.code === 400) {
-          dispatch(authFailed(r.response.errors));
-          console.log("REGISTRATION FAILED", r.response.errors);
-        }
-      })
-      .catch(e => console.log("HTTP ERROR:", e));
+    }).then(r => dispatch(loginResp(r.json())));
   };
 };

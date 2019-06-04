@@ -56,7 +56,7 @@ def create_app():
         username = req.get('username', None)
         password = req.get('password', None)
         user = auth.guard.authenticate(username, password)
-        ret = {'access_token': auth.guard.encode_jwt_token(user)}
+        ret = {'access_token': auth.guard.encode_jwt_token(user), 'status_code': 200}
         return (flask.jsonify(ret), 200)
     
     @app.route('/register', methods=['POST'])
@@ -74,11 +74,11 @@ def create_app():
 
         success, data = auth.register(username, password)
 
-        if not sucess:
-           return (flask.jsonify(data), 409)
+        if not success:
+            return (flask.jsonify({'message': data, 'status_code': 409}), 409)
 
         user = auth.guard.authenticate(username, password)
-        ret = {'access_token': auth.guard.encode_jwt_token(user)}
+        ret = {'access_token': auth.guard.encode_jwt_token(user), 'status_code': 200}
         return (flask.jsonify(ret), 200)
     
     @app.after_request

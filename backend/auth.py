@@ -17,11 +17,11 @@ class Auth:
         self.guard.init_app(app, User)
 
     def register(self, email, password):
-        if User.lookup("rn@peacevolution.org"):
+        if User.lookup(email):
             return (False, "User exists")
         
         else:
-            user = User(email=email, password=auth.guard.encrypt_password(password))
+            user = User(email=email, password=self.guard.encrypt_password(password))
             user.save()
-            reutrn (True, user)
+            return (True, user)
 

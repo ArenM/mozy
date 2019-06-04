@@ -39,8 +39,7 @@ Authentication: flask-login
 
 # Todo
 [x] User log-in
-[ ] User sign-up
-[ ] User log-in
+[x] User sign-up
 [ ] User profile (editable by user)
 [ ] List of trips which users can add to
 [ ] Trips on map

@@ -19,8 +19,7 @@ class App extends Component {
           </div>
         ) : (
           <div>
-            <p>Congratulations! you're logged in</p>
-            <p>Your key is: {this.props.user.token}</p>
+            <p>Congratulations! you're logged in.</p>
           </div>
         )}
       </Router>
