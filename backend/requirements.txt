@@ -1,4 +1,6 @@
 flask
 flask_mongoengine
-flask_security
+flask_login
+flask_praetorian
+flask_cors
 bcrypt

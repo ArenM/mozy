@@ -55,8 +55,8 @@ Authentication: flask-login
       - Display history of messages with that user
 
 ## Todo
- - [ ] User sign-up
- - [ ] User log-in
+ - [x] User log-in
+ - [x] User sign-up
  - [ ] User profile (editable by user)
  - [ ] List of trips which users can add to
  - [ ] Trips on map

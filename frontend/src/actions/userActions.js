@@ -1,86 +1,78 @@
-import * as type from "./actionTypes"
-import backendUrl from "../config"
+import * as type from "./actionTypes";
+import backendUrl from "../config";
 
 export const changeToken = (token: String) => {
   return {
     type: type.CHANGE_TOKEN,
-    token,
-  }
-}
+    token
+  };
+};
 
 export const deleteToken = () => {
   return {
-    type: type.DELETE_TOKEN,
-  }
-}
+    type: type.DELETE_TOKEN
+  };
+};
 
 export const authFailed = (errors: Object) => {
-  const err = []
-
-  for (const t in errors) {
-    for (const e in errors[t]) {
-      console.log(e)
-      errors[t][e] !== "" && err.push(errors[t][e])
-    }
-  }
-
-  err.length === 0 && err.push("")
-
   return {
-    type: "AUTH_FAILED",
-    errors: err,
-  }
-}
+    type: type.AUTH_FAILED,
+    errors
+  };
+};
 
-export const authenticate = (email: String, password: String) => {
+export const clearErrors = (errors: Object) => {
+  return {
+    type: type.CLEAR_ERRORS
+  };
+};
+
+const loginResp = resp => {
+  return dispatch => {
+    resp
+      .then(r => {
+        if (r.access_token !== undefined) {
+          console.log("OPERATION SUCCESS");
+          dispatch(changeToken(r.access_token));
+          dispatch(clearErrors());
+        } else if (r.message !== undefined) {
+          dispatch(authFailed([r.message]));
+          console.log("OPERATION FAILED", r.message);
+        } else {
+          dispatch(authFailed(["UNKNOWN ERROR"]));
+          console.log("OPERATION FAILED", "UNKNOWN ERROR");
+        }
+      })
+      .catch(e => console.log("HTTP ERROR:", e));
+  };
+};
+
+export const authenticate = (username: String, password: String) => {
   return dispatch => {
     return fetch(`${backendUrl}/login`, {
       method: "POST",
       headers: {
-        "Content-Type": "application/json",
+        "Content-Type": "application/json"
       },
       body: JSON.stringify({
-        email,
-        password,
-      }),
-    })
-      .then(d => d.json())
-      .then(r => {
-        if (r.meta.code === 200) {
-          dispatch(changeToken(r.response.user.authentication_token))
-          dispatch(authFailed({ email: [""], password: [""] }))
-        } else if (r.meta.code === 400) {
-          dispatch(authFailed(r.response.errors))
-          console.log("AUTHENTICATION FAILED", r.response.errors)
-        }
+        username,
+        password
       })
-      .catch(e => console.log("HTTP ERROR:", e))
-  }
-}
+    }).then(r => dispatch(loginResp(r.json())));
+  };
+};
 
-export const register = (name: String, email: String, password: String) => {
+export const register = (name: String, username: String, password: String) => {
   return dispatch => {
     return fetch(`${backendUrl}/register`, {
       method: "POST",
       headers: {
-        "Content-Type": "application/json",
+        "Content-Type": "application/json"
       },
       body: JSON.stringify({
-        email,
-        password,
-        password_confirm: password
-      }),
-    })
-      .then(d => d.json())
-      .then(r => {
-        if (r.meta.code === 200) {
-          dispatch(changeToken(r.response.user.authentication_token))
-          dispatch(authFailed({ email: [""], password: [""] }))
-        } else if (r.meta.code === 400) {
-          dispatch(authFailed(r.response.errors))
-          console.log("REGISTRATION FAILED", r.response.errors)
-        }
+        username,
+        password
       })
-      .catch(e => console.log("HTTP ERROR:", e))
-  }
-}
+    }).then(r => dispatch(loginResp(r.json())));
+  };
+};
