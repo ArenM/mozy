@@ -2,12 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { withStyles } from "@material-ui/core/styles";
-import {
-  AppBar,
-  Toolbar,
-  Typography,
-  Button
-} from "@material-ui/core";
+import { AppBar, Toolbar, Typography, Button } from "@material-ui/core";
 
 const styles = {
   root: {
@@ -32,9 +27,14 @@ function MainAppBar(props) {
             Mozy
           </Typography>
           {authenticated ? (
-            <Button color="inherit" onClick={logOut}>
-              Logout
-            </Button>
+            <div>
+              <Button color="inherit" onClick={logOut}>
+                Logout
+              </Button>
+              <Button color="inherit" component={Link} to="/map">
+                Map
+              </Button>
+            </div>
           ) : (
             <div>
               <Button color="inherit" component={Link} to="/login">

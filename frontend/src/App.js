@@ -5,6 +5,7 @@ import "./App.css";
 
 import LoginContainer from "./containers/LoginContainer";
 import SignupContainer from "./containers/SignupContainer";
+import TripMapContainer from "./containers/TripMapContainer";
 import AppBar from "./containers/AppBarContainer";
 
 class App extends Component {
@@ -19,7 +20,7 @@ class App extends Component {
           </div>
         ) : (
           <div>
-            <p>Congratulations! you're logged in.</p>
+            <Route path="/map" component={TripMapContainer} />
           </div>
         )}
       </Router>
