@@ -4,7 +4,7 @@ import flask_praetorian
 import flask
 from flask import Flask
 from backend.auth import Auth
-from backend.db import db, User, Role
+from backend.db import db, User, Role, Trip
 
 
 def create_app():
@@ -37,10 +37,24 @@ def create_app():
                  password=auth.guard.encrypt_password(
                      default['password'])).save()
 
-    @app.route('/')
-    @flask_praetorian.roles_required('user')
-    def root():
-        return "Hello World"
+    #@flask_praetorian.roles_required('user')
+    @app.route('/route', methods=['POST'])
+    def post_route():
+        req = flask.request.get_json()
+        start = req.get('start')
+        end = req.get('end')
+        t = Trip(start=[int(start['lon']), int(start['lat'])], end=[int(end['lon']), int(end['lat'])])
+        t.save()
+        print(end)
+        return ""
+
+    @app.route('/route', methods=['GET'])
+    def get_route():
+        t = []
+        for trip in Trip.objects:
+            t.append(trip['start'])
+
+        return flask.jsonify(t)
 
     @app.route('/login', methods=['POST'])
     def login():

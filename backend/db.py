@@ -39,3 +39,7 @@ class User(db.Document):
     @property
     def identity(self):
         return str(self.id)
+
+class Trip(db.Document):
+    start = db.PointField()
+    end = db.PointField()
