@@ -16,12 +16,12 @@ class Auth:
         self.guard = flask_praetorian.Praetorian()
         self.guard.init_app(app, User)
 
-    def register(self, email, password):
+    def register(self, email, password, roles=['user']):
         if User.lookup(email):
             return (False, "User exists")
         
         else:
-            user = User(email=email, password=self.guard.encrypt_password(password))
+            user = User(email=email, password=self.guard.encrypt_password(password), roles=roles)
             user.save()
             return (True, user)
 
