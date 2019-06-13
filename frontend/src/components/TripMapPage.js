@@ -14,30 +14,15 @@ import "ol/ol.css";
 
 class LoginPage extends Component {
   componentDidMount() {
-    let geojsonObject = {
-      type: "FeatureCollection",
-      crs: {
-        type: "name",
-        properties: {
-          name: "EPSG:4326"
-        }
-      },
-      features: [
-        {
-          type: "Feature",
-          geometry: {
-            type: "Point",
-            coordinates: [1000, 72]
-          }
-        }
-      ]
-    };
-
-    let pointSource = new VectorSource({
-      features: new GeoJSON().readFeatures(geojsonObject)
+    var routes_source = new VectorSource({
+      format: new GeoJSON(),
+      url: "http://localhost:5000/route",
+      strategy: all
     });
 
-    let pointLayer = new VectorLayer({ source: pointSource });
+    let routes_layer = new VectorLayer({
+      source: routes_source
+    });
 
     let map = new Map({
       target: this.refs.mapContainer,

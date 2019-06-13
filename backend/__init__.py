@@ -43,18 +43,25 @@ def create_app():
         req = flask.request.get_json()
         start = req.get('start')
         end = req.get('end')
-        t = Trip(start=[int(start['lon']), int(start['lat'])], end=[int(end['lon']), int(end['lat'])])
+        t = Trip(start=[int(start['lon']),
+                        int(start['lat'])],
+                 end=[int(end['lon']), int(end['lat'])])
         t.save()
         print(end)
         return ""
 
     @app.route('/route', methods=['GET'])
     def get_route():
-        t = []
+        ret = {
+            'type': "FeatureCollection",
+            'features': []
+        }
         for trip in Trip.objects:
-            t.append(trip['start'])
+            ts = {"properties": {}, "type": "Feature", "geometry": trip['start']}
+            #ret['features'].append(trip['start'])
+            ret['features'].append(ts)
 
-        return flask.jsonify(t)
+        return flask.jsonify(ret)
 
     @app.route('/login', methods=['POST'])
     def login():
