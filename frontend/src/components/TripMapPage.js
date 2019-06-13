@@ -1,18 +1,17 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { withStyles } from "@material-ui/core";
 
-import Map from "ol/Map";
+import { Map, View } from "ol";
 import GeoJSON from "ol/format/GeoJSON";
 import OSM from "ol/source/OSM";
 import VectorSource from "ol/source/Vector";
 import TileLayer from "ol/layer/Tile";
 import VectorLayer from "ol/layer/Vector";
-import View from "ol/View";
+import { all } from "ol/loadingstrategy";
 
 import "ol/ol.css";
 
-class LoginPage extends Component {
+class MapPage extends Component {
   componentDidMount() {
     var routes_source = new VectorSource({
       format: new GeoJSON(),
@@ -26,7 +25,7 @@ class LoginPage extends Component {
 
     let map = new Map({
       target: this.refs.mapContainer,
-      layers: [new TileLayer({ source: new OSM() }), pointLayer],
+      layers: [new TileLayer({ source: new OSM() }), routes_layer],
       view: new View({
         center: [42, 0],
         zoom: 2
@@ -38,4 +37,8 @@ class LoginPage extends Component {
   }
 }
 
-export default LoginPage;
+MapPage.propTypes = {
+  trips: PropTypes.object.isRequired
+};
+
+export default MapPage;

@@ -52,7 +52,7 @@ const LoginPage = ({ onSubmit, onChange, user, errors, classes }) => (
 
     <CardActions>
       <Button size="medium" color="primary" onClick={onSubmit}>
-        Sign Up
+        Login
       </Button>
     </CardActions>
   </Card>

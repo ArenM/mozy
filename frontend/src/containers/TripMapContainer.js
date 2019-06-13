@@ -9,6 +9,6 @@ class TripMapContainer extends Component {
   }
 }
 
-const mapStateToProps = state => ({ errors: state.errors.auth_errors });
+const mapStateToProps = state => ({});
 
 export default connect(mapStateToProps)(TripMapContainer);

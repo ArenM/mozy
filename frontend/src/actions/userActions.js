@@ -27,20 +27,20 @@ export const clearErrors = (errors: Object) => {
   };
 };
 
-const loginResp = resp => {
+const loginResponce = resp => {
   return dispatch => {
     resp
       .then(r => {
         if (r.access_token !== undefined) {
-          console.log("OPERATION SUCCESS");
+          console.log("LOGIN SUCCESS");
           dispatch(changeToken(r.access_token));
           dispatch(clearErrors());
         } else if (r.message !== undefined) {
           dispatch(authFailed([r.message]));
-          console.log("OPERATION FAILED", r.message);
+          console.log("LOGIN FAILED", r.message);
         } else {
           dispatch(authFailed(["UNKNOWN ERROR"]));
-          console.log("OPERATION FAILED", "UNKNOWN ERROR");
+          console.log("LOGIN FAILED", "UNKNOWN ERROR");
         }
       })
       .catch(e => console.log("HTTP ERROR:", e));
@@ -58,7 +58,7 @@ export const authenticate = (username: String, password: String) => {
         username,
         password
       })
-    }).then(r => dispatch(loginResp(r.json())));
+    }).then(r => dispatch(loginResponce(r.json())));
   };
 };
 
@@ -73,6 +73,6 @@ export const register = (name: String, username: String, password: String) => {
         username,
         password
       })
-    }).then(r => dispatch(loginResp(r.json())));
+    }).then(r => dispatch(loginResponce(r.json())));
   };
 };

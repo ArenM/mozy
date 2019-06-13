@@ -15,10 +15,10 @@ class LoginContainer extends Component {
       error: {}
     };
     this.formChange = this.formChange.bind(this);
-    this.submit = this.submit.bind(this);
+    this.formSubmit = this.formSubmit.bind(this);
   }
 
-  submit(e) {
+  formSubmit(e) {
     e.preventDefault();
     this.props.authenticate(this.state.user.email, this.state.user.password);
   }
@@ -33,7 +33,7 @@ class LoginContainer extends Component {
   render() {
     return (
       <LoginPage
-        onSubmit={this.submit}
+        onSubmit={this.formSubmit}
         onChange={this.formChange}
         errors={this.props.errors}
         user={this.state.user}

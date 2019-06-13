@@ -58,7 +58,6 @@ def create_app():
         }
         for trip in Trip.objects:
             ts = {"properties": {}, "type": "Feature", "geometry": trip['start']}
-            #ret['features'].append(trip['start'])
             ret['features'].append(ts)
 
         return flask.jsonify(ret)
@@ -77,9 +76,12 @@ def create_app():
         username = req.get('username', None)
         password = req.get('password', None)
         user = auth.guard.authenticate(username, password)
-        ret = {'access_token': auth.guard.encode_jwt_token(user), 'status_code': 200}
+        ret = {
+            'access_token': auth.guard.encode_jwt_token(user),
+            'status_code': 200
+        }
         return (flask.jsonify(ret), 200)
-    
+
     @app.route('/register', methods=['POST'])
     def register():
         """
@@ -99,9 +101,12 @@ def create_app():
             return (flask.jsonify({'message': data, 'status_code': 409}), 409)
 
         user = auth.guard.authenticate(username, password)
-        ret = {'access_token': auth.guard.encode_jwt_token(user), 'status_code': 200}
+        ret = {
+            'access_token': auth.guard.encode_jwt_token(user),
+            'status_code': 200
+        }
         return (flask.jsonify(ret), 200)
-    
+
     @app.after_request
     def after_request_cors(resp):
         resp.headers.set('Access-Control-Allow-Origin', "*")
